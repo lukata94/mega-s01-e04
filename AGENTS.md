@@ -30,6 +30,34 @@ Read first: `docs/vision.md`, `docs/styleguide.md`. Decisions: `docs/adr/`.
 5. An issue is closed only when its "Done when" holds. If it can't hold yet, leave it open and
    say what it waits on.
 
+## Issue shape
+
+Decided by the repo owner on 2026-11-02, for every issue split from a plan. The
+`plan-to-issues` skill reads this instead of asking again.
+
+```
+Source: plan.md § <n>
+
+## Scope
+<what to build, taken from the plan>
+
+## Done when
+<one checkable condition from the plan>
+
+## Blocked by
+#<n>, #<n>  (real issue numbers, or "Nothing.")
+
+## Worker
+<model tier: the strongest for logic, a cheaper one for views and tests>
+```
+
+- Label every issue `plan:<plan name>` (this plan: `plan:morning-digest`).
+- Create issues in dependency order, so "Blocked by" cites real numbers.
+- A step that waits on someone outside (a reviewer, a host) is its own issue. It stays open
+  until that person has confirmed. Do not close it, and do not do the step after it, on a guess.
+- Close with the comment shape above, citing a sha that is on the remote. Close only after the
+  owner said yes.
+
 ## Skills
 
 Shared skills live in `.agents/skills/`, one folder each, `SKILL.md` inside. That folder is the
